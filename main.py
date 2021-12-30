@@ -7,7 +7,6 @@ chosen_word = random.choice(hangman_words.word_list)
 word_length = len(chosen_word)
 
 end_of_game = False
-guesses =[]
 lives = 6
 
 print(hangman_art.logo)
@@ -25,11 +24,9 @@ while not end_of_game:
 
     # If the user has entered a letter they've already guessed, print the letter and let them know.
 
-    if guess not in guesses:
-      guesses.append(guess)
-    else:
-      print(f"You have already guess this letter {guess}")
-    
+    if guess in display:
+        print(f"You've already guessed {guess}")
+
     
     #Check guessed letter
     for position in range(word_length):
@@ -39,7 +36,7 @@ while not end_of_game:
 
     #Check if user is wrong.
     if guess not in chosen_word:
-        print(f"Letter not in word {guess}")
+        print(f"You guessed {guess}, that's not in the word. You lose a life.")
         lives -= 1
         if lives == 0:
             end_of_game = True
